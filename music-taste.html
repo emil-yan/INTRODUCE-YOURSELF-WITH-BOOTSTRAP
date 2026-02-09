@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        
+        <style>
+
+            .navbar {
+                font-family: 'helvetica', sans-serif;
+                font-size: 2rem;
+            }
+
+            .navbar-brand {
+                font-size: 3.5rem;
+            }
+
+            /* Albums*/
+            .card-text {
+                font-family: 'helvetica', sans-serif;
+            }
+
+            .card-bg {
+                font-family: 'helvetica', sans-serif;
+                background-color: rgb(235, 235, 235) !important;
+                color: black;
+                text-align: center;
+            }
+
+            .card-header {
+                height: 325px; /* Adjust this value to your preferred card height */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden; /* Prevents oversized images from leaking out */
+                background-color: #f0f0f0; /* Optional: light grey for empty space */
+            }
+
+            .gallery-img {
+                width: 100%;
+                height: 100%;
+                /* 'contain' ensures the whole image fits without cropping */
+                /* 'cover' fills the area but might crop the edges slightly */
+                object-fit: contain; 
+                transition: transform 0.3s ease;
+            }
+
+            .card-bg {
+                display: flex;
+                flex-direction: column;
+                height: 100%; 
+            }
+
+            .card-body {
+                flex-grow: 1; /* Pushes the card-body to fill the remaining space */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9); /* Dark backdrop */
+                display: none; /* Hidden until clicked */
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                cursor: zoom-out;
+            }
+
+            .overlay img {
+                max-width: 90%;
+                max-height: 90%;
+                box-shadow: 0 0 20px rgba(0,0,0,0.5);
+                transition: transform 0.3s ease;
+            }
+
+            .frame {
+                border: none;
+                background: none;
+                padding: 0;
+                cursor: zoom-in;
+                display: block;
+            }
+
+            .frame img {
+                display: block;
+                width: 100%; /* or a fixed size, e.g., 100px */
+                height: auto; /* maintain aspect ratio */
+            }
+
+            /* Default image styling */
+            #enlarge-image {
+                width: 200px; /* Initial width */
+                height: auto; /* Maintain aspect ratio */
+                transition: transform 0.25s ease; /* Smooth transition effect */
+                cursor: pointer; /* Changes cursor to a hand pointer */
+            }
+
+            /* Enlarged state styling */
+            #enlarge-image.enlarged {
+                transform: scale(3); /* Enlarge the image by 1.5 times */
+                /* May help with positioning during scaling */
+                z-index: 10; /* Ensures the enlarged image is on top of other content */
+            }
+
+            body {
+                background-image: url('');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                background-color: #2F3B17; /*2F3B17 americanfootball color*/
+            }
+        </style>
+
+        <title>Hobbies</title>
+    </head>
+    <body>
+
+        
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-">
+            <a class="navbar-brand">
+                rudolph</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                        About me
+                        </a>
+                        <div class="dropdown-menu">
+                        <a class="dropdown-item" href="hobbies.html">Hobbies</a>
+                        <a class="dropdown-item" href="music-taste.html">Music Taste</a>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item">
+                        
+                        <a class="nav-link">
+                            albums
+                        </a>
+                    </li>
+                </ul>
+            
+            </div>
+        </nav>
+        
+        <main class="album-main" role="main">
+      
+            <div class="container mt-5">
+                <div class="row">
+                    <!-- Card Entry -->
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/05df90a1739f1e4c63e4d72bfd6de5b6/0x1900-000000-80-0-0.jpg" alt="Standing Still in a Moving Scene Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">百景 - Standing Still in a Moving Scene</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/041ab5ceb6fb6ebf9512966835be9e1b/1900x1900-000000-80-0-0.jpg" alt="IGOR Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Tyler, The Creator - IGOR</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/858ae7bbe972d41cabb43564bcba8216/1900x1900-000000-80-0-0.jpg" alt="Roy Pablo Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Boy Pablo - Roy Pablo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/478a544d29275755b3b8f7b4a1fd7a3c/0x1900-000000-80-0-0.jpg" alt="Dawn FM Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">The Weeknd - Dawn FM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/99bfc862c81431e2b794f45b8d627ab0/1900x1900-000000-80-0-0.jpg" alt="Is This It Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">The StrokesIs This It</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/05a186e0a859a36f9cd51cdae2158fe1/1900x1900-000000-80-0-0.jpg" alt="OK Computer Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Radiohead - OK Computer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://f4.bcbits.com/img/a3589746424_16.jpg" alt="F#A# Album ∞ Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Godspeed You! Black Emperor - F#A# ∞</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/29ff4f8e9cc877e5243802e2fc9f4294/1900x1900-000000-81-0-0.jpg" alt="Velocity:Design:Comfort Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">sweet trip - Velocity:Design:Comfort</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/1f1e8acf2420b6d04240281b41185213/0x1900-000000-80-0-0.jpg" alt="For Lovers Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Lamp - For Lovers</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://i.scdn.co/image/ab67616d0000b27345d4aa335c9885ed7b964053" alt="日のあたる場所にきてよ Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">宇宙ネコ子 - 日のあたる場所にきてよ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://f4.bcbits.com/img/a2979548803_16.jpg" alt="Newborn Sun Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">CHON - Newborn Sun</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/c3e4ccfd3aee137c69472eda9720f21c/1900x1900-000000-80-0-0.jpg" alt="american football Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">American Football - american football</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/217f6c70913d113d09a561cb17b64f6e/0x1900-000000-80-0-0.jpg" alt="loveless Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">My Bloody Valentine - loveless</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/78dc61a7da7b26eb994005b02da7023a/500x500.jpg" alt="first KO -“HAJIME NO IPPO: THE FIGHTING!” Original Soundtrack- Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Tsuneo Imahori - first KO -“HAJIME NO IPPO: THE FIGHTING!” Original Soundtrack-</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card card-bg h-100">
+                            <div class="card-header">
+                                <button class="frame" onclick="expandImage(this)">
+                                    <img class="gallery-img" src="https://cdn-images.dzcdn.net/images/cover/743f10679fbd7de6368b90a3bcfebe06/0x1900-000000-80-0-0.jpg" alt="The Music of Red Dead Redemption 2 (Original Soundtrack) Album Cover">
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Various Artists - The Music of Red Dead Redemption 2 (Original Soundtrack)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Overlay for Enlarged View -->
+            <div id="imageOverlay" class="overlay" onclick="closeImage()">
+                <img id="overlayImg" src="" alt="Enlarged view">
+            </div>
+        </main>
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    
+    <script>
+        function expandImage(buttonElement) {
+            const src = buttonElement.querySelector('img').src;
+            const overlay = document.getElementById('imageOverlay');
+            const overlayImg = document.getElementById('overlayImg');
+            
+            overlayImg.src = src;
+            overlay.style.display = 'flex';
+        }
+
+        function closeImage() {
+            document.getElementById('imageOverlay').style.display = 'none';
+        }
+    </script>
+
+    </body>
+</html>
